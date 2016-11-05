@@ -11,13 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.asamz.psctroll.SplashScreen">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/compicon"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/imageView2" />
+
 
     <pl.droidsonroids.gif.GifTextView
         android:layout_width="wrap_content"
