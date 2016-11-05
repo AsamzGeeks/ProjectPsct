@@ -3,9 +3,13 @@ package com.asamz.psctroll;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.WebView;
+
+import pl.droidsonroids.gif.GifTextView;
 
 public class SplashScreen extends AppCompatActivity {
-    ActionBar actionBar;
+   private ActionBar actionBar;
+    private pl.droidsonroids.gif.GifTextView gifView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,5 +18,7 @@ public class SplashScreen extends AppCompatActivity {
         actionBar = getSupportActionBar();
         //Hiding the action bar, since it is a splash screen activity
         actionBar.hide();
+        gifView=(GifTextView)findViewById(R.id.gifText);
+
     }
 }
