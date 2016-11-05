@@ -18,7 +18,7 @@ public class SplashScreen extends AppCompatActivity {
         actionBar = getSupportActionBar();
         //Hiding the action bar, since it is a splash screen activity
         actionBar.hide();
-        gifView=(GifTextView)findViewById(R.id.gifText);
+
 
     }
 }
