@@ -12,5 +12,16 @@ android:background="@drawable/sadsd"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.asamz.psctroll.SplashScreen">
 
+    <pl.droidsonroids.gif.GifTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/finaload"
+        android:layout_marginBottom="116dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="145dp"
+        android:layout_marginStart="145dp" />
+
 
 </RelativeLayout>
