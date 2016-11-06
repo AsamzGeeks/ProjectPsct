@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBackGround"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:id="@+id/activity_sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/colorBackGround"
+    tools:context="com.asamz.psctroll.SignUpActivity">
+
+
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/usericon"
+        android:id="@+id/imageView4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/divider"
+            android:id="@+id/imageView8" />
+
+        <TextView
+            android:text="First Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvFirstName" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etName" />
+
+        <TextView
+            android:text="Second Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvSecondName" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etUserName" />
+
+        <TextView
+            android:text="Email ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvEmail" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/etEmail" />
+
+        <TextView
+            android:text="Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPassword" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/etPassword" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/divider"
+            android:id="@+id/imageView12" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            app:srcCompat="@drawable/signup"
+            android:id="@+id/ivSignUp"
+            android:onClick="signUpProcedure"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+    </ScrollView>
