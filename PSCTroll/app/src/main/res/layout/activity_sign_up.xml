@@ -9,7 +9,7 @@
 <RelativeLayout
     android:id="@+id/activity_sign_up"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
 
     android:background="@color/colorBackGround"
     tools:context="com.asamz.psctroll.SignUpActivity">
@@ -35,65 +35,74 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:weightSum="1">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/divider"
             android:id="@+id/imageView8" />
-
-        <TextView
-            android:text="First Name"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/signupname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvFirstName" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/etName" />
-
-        <TextView
-            android:text="Second Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvSecondName" />
+            android:layout_marginTop="10dp">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/etUserName" />
-
-        <TextView
-            android:text="Email ID"
+            android:id="@+id/etName"
+            android:hint="@string/first_name" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/secondname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvEmail" />
+
+            android:layout_marginTop="10dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etUserName"
+            android:hint="@string/second_name" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/etEmail" />
-
-        <TextView
-            android:text="Password"
+            android:id="@+id/etEmail"
+            android:hint="@string/email" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvPassword" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/etPassword" />
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/etPassword"
+                android:hint="@string/password" />
+        </android.support.design.widget.TextInputLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -101,13 +110,28 @@
             app:srcCompat="@drawable/divider"
             android:id="@+id/imageView12" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            app:srcCompat="@drawable/signup"
-            android:id="@+id/ivSignUp"
-            android:onClick="signUpProcedure"
-            android:layout_gravity="center" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <pl.droidsonroids.gif.GifTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/signupload"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:id="@+id/gfSignUp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                app:srcCompat="@drawable/signup"
+                android:id="@+id/ivSignUp"
+                android:onClick="signUpProcedure"
+                android:layout_gravity="center" />
+        </RelativeLayout>
+
 
     </LinearLayout>
 
