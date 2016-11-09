@@ -6,4 +6,5 @@
     <color name="colorSplashScreen">#1f1029</color>
     <color name="colorActionBar">#8d1143</color>
     <color name="colorBackGround">#eeeeee</color>
+    <color name="colorWhite">#ffffff </color>
 </resources>

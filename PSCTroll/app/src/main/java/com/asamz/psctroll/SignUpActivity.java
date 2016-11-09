@@ -44,7 +44,7 @@ import pl.droidsonroids.gif.GifTextView;
 import static android.provider.ContactsContract.Intents.Insert.EMAIL;
 
 public class SignUpActivity extends AppCompatActivity {
-   private ImageView ivSignup;
+  /* private ImageView ivSignup;
    private  EditText etFirstName,etSecondName,etEmail,etPassword;
     private String firstName,secondName,emailId,passWord;
     private FirebaseAuth firebaseAuth;
@@ -100,23 +100,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
-    public boolean isValidEmailAddress(String email) {
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        Pattern p = Pattern.compile(ePattern);
-        Matcher m = p.matcher(email);
-        if ((m.matches()&&email.endsWith(".com"))||(m.matches()&&email.endsWith(".au"))||(m.matches()&&email.endsWith(".edu"))||(m.matches()&&email.endsWith(".in"))){
-            return true;
-        }
-        else
-            return false;
-    }
-    public boolean passwordMin(String password){
-        if(password.length()>=6){
-            return true;
-        }
-        else
-            return false;
-    }
+
     public void signUpProcedure(View view){
         if(isNetworkAvailable()==false){
             Toast.makeText(getApplicationContext(), "Connect to an active internet connection", Toast.LENGTH_SHORT).show();
@@ -266,12 +250,7 @@ public class SignUpActivity extends AppCompatActivity {
                 });
 
     }
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
+
     private boolean isEmailAlreadyUsed(String EmailID) {
         mAuth = FirebaseAuth.getInstance();
 
@@ -298,5 +277,5 @@ public class SignUpActivity extends AppCompatActivity {
         }
         else
             return true;
-    }
+    }*/
 }
