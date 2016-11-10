@@ -4,20 +4,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v4.database.DatabaseUtilsCompat;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,9 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pkmmte.view.CircularImageView;
 import com.soundcloud.android.crop.Crop;
-import com.soundcloud.android.crop.CropImageActivity;
+
 import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Message;
@@ -52,8 +44,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import pl.droidsonroids.gif.GifTextView;
-import static android.R.attr.id;
-import static java.security.AccessController.getContext;
+
 public class RegisterActivity extends AppCompatActivity {
 
     ImageView ivProfileImage,ivSignup;
@@ -87,11 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         fadein= AnimationUtils.loadAnimation(this, R.anim.fadein);
-        ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+        ivProfileImage = (ImageView) findViewById(R.id.ivLoginDefualt);
        // ivProfileImage.startAnimation(fadein);
         ivProfileImage.setVisibility(View.VISIBLE);
 
-        circularImageView = (CircularImageView)findViewById(R.id.cvProfielImage);
+        circularImageView = (CircularImageView)findViewById(R.id.cvProfileLogin);
         tvImageStatus=(TextView)findViewById(R.id.tvImageStatus) ;
        // tvImageStatus.startAnimation(fadein);
         llSignUp=(LinearLayout)findViewById(R.id.rlSignup);
