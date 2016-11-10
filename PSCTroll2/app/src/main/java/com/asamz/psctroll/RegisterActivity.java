@@ -271,7 +271,8 @@ public class RegisterActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
+            Intent login=new Intent(RegisterActivity.this,LoginActivity.class);
+            startActivity(login);
 
         }
 
