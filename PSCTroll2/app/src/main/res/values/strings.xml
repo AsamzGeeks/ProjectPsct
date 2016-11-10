@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PSC Troll</string>
+    <string name="first_name">First Name</string>
+    <string name="second_name">Second Name</string>
+    <string name="email">Email ID</string>
+    <string name="emailError">Email ID Should Valid</string>
+    <string name="passwordError">Password Should Have 6 Letters</string>
+    <string name="password">Password</string>
+</resources>
