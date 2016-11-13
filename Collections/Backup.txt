@@ -1,0 +1,49 @@
+  public void addImage(View view) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1234);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1234 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            uri = data.getData();
+            destinationURI=Uri.fromFile(new File(getCacheDir(), "cropped"));
+            Crop.of(uri, destinationURI).asSquare().start(this);
+            tvImageStatus.setVisibility(View.INVISIBLE);
+            circularImageView.setVisibility(View.INVISIBLE);
+        }
+        if (requestCode == Crop.REQUEST_CROP && resultCode == RESULT_OK) {
+
+            try {
+                Crop.getOutput(data);
+                Bitmap bitmap = MyMethods.loadBitmap(destinationURI.toString());
+                SharedPreferences.Editor editor=appPrefs.edit();
+                editor.putString("namePreferance", "profileImage");
+                editor.putString("imagePreferance", MyMethods.encodeTobase64(bitmap));
+                editor.apply();
+                tagProfile=1;
+                ivProfileImage.setVisibility(View.GONE);
+                tvImageStatus.setVisibility(View.INVISIBLE);
+                circularImageView.setImageBitmap(bitmap);
+                circularImageView.setBorderColor(getResources().getColor(R.color.colorActionBar));
+                circularImageView.setBorderWidth(10);
+                circularImageView.setSelectorColor(getResources().getColor(R.color.colorWhite));
+                circularImageView.setSelectorStrokeColor(getResources().getColor(R.color.colorPrimary));
+                circularImageView.setSelectorStrokeWidth(10);
+                circularImageView.setVisibility(View.VISIBLE);
+
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(),"Error in Cropping",Toast.LENGTH_SHORT).show();
+            }
+
+            tvImageStatus.setText("Your Image Looks Great!");
+            tvImageStatus.setAnimation(fadein);
+            tvImageStatus.setVisibility(View.VISIBLE);
+
+
+        }
+    }

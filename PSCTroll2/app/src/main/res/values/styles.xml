@@ -6,7 +6,10 @@
 
         <item name="colorPrimary">@color/colorActionBar</item>
         <item name="colorPrimaryDark">@color/colorSplashScreen</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorActionBar</item>
+    </style>
+    <style name="CircularProgress" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/colorActionBar</item>
     </style>
 
 </resources>

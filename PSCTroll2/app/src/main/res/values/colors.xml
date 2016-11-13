@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
     <color name="colorSplashScreen">#1f1029</color>
     <color name="colorActionBar">#8d1143</color>
     <color name="colorBackGround">#f2eff0</color>
