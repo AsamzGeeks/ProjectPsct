@@ -75,41 +75,51 @@
         android:ems="10"
         android:id="@+id/etRepeat"
         android:hint="Repeat Password" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="189dp">
+
+            <TextView
+                android:text="@string/action_sign_in_short"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvSignIn"
+                android:textAlignment="center"
+                android:onClick="gotoLogin"
+                android:textSize="18sp"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_weight="0.62"
+                android:layout_below="@+id/ivSignUp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                app:srcCompat="@drawable/righticon"
+                android:id="@+id/ivSignUp"
+                tools:layout_constraintRight_creator="1"
+                android:onClick="SignUpProcedure"
+                tools:layout_constraintBottom_creator="1"
+                app:layout_constraintBottom_toTopOf="@+id/tvSignIn"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_constraintLeft_creator="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_weight="1"
+                android:layout_height="55dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="13dp" />
+
+        </RelativeLayout>
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/righticon"
-            android:id="@+id/ivSignUp"
-            tools:layout_constraintRight_creator="1"
-            android:onClick="SignUpProcedure"
-            tools:layout_constraintBottom_creator="1"
-            app:layout_constraintBottom_toTopOf="@+id/tvSignIn"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_constraintLeft_creator="1"
-            app:layout_constraintLeft_toLeftOf="parent" />
-
-        <TextView
-            android:text="Sign In"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvSignIn"
-            android:textAlignment="center"
-            android:onClick="gotoLogin"
-            android:textSize="18sp"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintBottom_creator="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_constraintLeft_creator="1"
-            android:layout_marginBottom="52dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

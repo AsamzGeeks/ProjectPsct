@@ -152,11 +152,7 @@ public class SignUp extends AppCompatActivity {
                         current_user_db.child("name").setValue(FirstName);
                         current_user_db.child("secondname").setValue(SecondName);
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        user.sendEmailVerification()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
+                        user.sendEmailVerification();
                                             mProgress.dismiss();
                                             Intent loginNew = new Intent(SignUp.this, LoginActivity.class);
                                             loginNew.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -165,20 +161,11 @@ public class SignUp extends AppCompatActivity {
                                         }
                                         else{
                                             regStatus=false;
-                                        }
-                                    }
-                                });
-
-
-
-
-
-                    } else {
                         Toast.makeText(getApplicationContext(), "Error,Please Try Again", Toast.LENGTH_SHORT).show();
+                                        }
 
-                        regStatus=false;
-                        mProgress.dismiss();
-                    }
+
+
                 }
             });
             return null;

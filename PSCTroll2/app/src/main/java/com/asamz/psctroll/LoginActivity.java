@@ -29,9 +29,7 @@ import com.pkmmte.view.CircularImageView;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailField,passwordField;
-    private Button btnLogin;
     private TextView signUp,passwordReset;
-   private ProgressBar pbloadLogin;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     @Override
@@ -40,13 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         emailField=(EditText)findViewById(R.id.etEmailLogin);
         passwordField=(EditText)findViewById(R.id.EtPasswordLogin);
-        btnLogin=(Button)findViewById(R.id.btnSignIn);
-        pbloadLogin= (ProgressBar) findViewById(R.id.pbLoadLogin);
-        pbloadLogin.setVisibility(View.INVISIBLE);
+        signUp=(TextView)findViewById(R.id.tvSignUp);
+        passwordReset=(TextView)findViewById(R.id.tvForgot);
         mAuth=FirebaseAuth.getInstance();
         mDatabase= FirebaseDatabase.getInstance().getReference().child("users");
-        signUp=(TextView)findViewById(R.id.tvSignUP);
-        passwordReset=(TextView)findViewById(R.id.tvReset);
 
     }
     public void LoginCheck(View view){
@@ -56,10 +51,10 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please Fill All The Fields", Toast.LENGTH_SHORT).show();
         }
         else{
-            btnLogin.setVisibility(View.INVISIBLE);
+
             signUp.setVisibility(View.INVISIBLE);
             passwordReset.setVisibility(View.INVISIBLE);
-            pbloadLogin.setVisibility(View.VISIBLE);
+
             mAuth.signInWithEmailAndPassword(emailLogin,passwordLogin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -68,10 +63,10 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Sign In Failed,Try Again", Toast.LENGTH_SHORT).show();
-                        btnLogin.setVisibility(View.VISIBLE);
+
                         signUp.setVisibility(View.VISIBLE);
                         passwordReset.setVisibility(View.VISIBLE);
-                        pbloadLogin.setVisibility(View.INVISIBLE);
+
                     }
                 }
             });
@@ -88,11 +83,11 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(HomeActivity);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "User Does not Exist", Toast.LENGTH_SHORT).show();
-                    btnLogin.setVisibility(View.VISIBLE);
+                    Toast.makeText(getApplicationContext(), "User Does not Exist, Please Sign Up", Toast.LENGTH_SHORT).show();
+
                     signUp.setVisibility(View.VISIBLE);
                     passwordReset.setVisibility(View.VISIBLE);
-                    pbloadLogin.setVisibility(View.INVISIBLE);
+
                 }
             }
 
@@ -101,6 +96,14 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+    public void goSignUp(View view){
+        Intent signUpIntent=new Intent(LoginActivity.this,SignUp.class);
+        startActivity(signUpIntent);
+    }
+    public void goReset(View view){
+        Intent resetIntent=new Intent(LoginActivity.this,ResetActivity.class);
+        startActivity(resetIntent);
     }
 
 }
