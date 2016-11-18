@@ -3,6 +3,7 @@ package com.asamz.psctroll;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,82 +29,116 @@ import com.google.firebase.database.ValueEventListener;
 import com.pkmmte.view.CircularImageView;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText emailField,passwordField;
-    private TextView signUp,passwordReset;
+    private EditText emailField, passwordField;
+    private TextView signUp, passwordReset;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private ProgressBar pbLogin;
+    private ImageView tvLogin;
+    String emailLogin;
+    String passwordLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        emailField=(EditText)findViewById(R.id.etEmailLogin);
-        passwordField=(EditText)findViewById(R.id.EtPasswordLogin);
-        signUp=(TextView)findViewById(R.id.tvSignUp);
-        passwordReset=(TextView)findViewById(R.id.tvForgot);
-        mAuth=FirebaseAuth.getInstance();
-        mDatabase= FirebaseDatabase.getInstance().getReference().child("users");
+        emailField = (EditText) findViewById(R.id.etEmailLogin);
+        passwordField = (EditText) findViewById(R.id.EtPasswordLogin);
+        signUp = (TextView) findViewById(R.id.tvSignUp);
+        passwordReset = (TextView) findViewById(R.id.tvForgot);
+        mAuth = FirebaseAuth.getInstance();
+        pbLogin = (ProgressBar) findViewById(R.id.pbLogin);
+        pbLogin.setVisibility(View.INVISIBLE);
+        tvLogin = (ImageView) findViewById(R.id.tvLogin);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
 
     }
-    public void LoginCheck(View view){
-        String emailLogin=emailField.getText().toString().trim();
-        String passwordLogin=passwordField.getText().toString().trim();
-        if(TextUtils.isEmpty(emailLogin)||TextUtils.isEmpty(passwordLogin)){
-            Toast.makeText(getApplicationContext(), "Please Fill All The Fields", Toast.LENGTH_SHORT).show();
-        }
-        else{
 
+    public void LoginCheck(View view) {
+
+        if (emailField.getText().toString().isEmpty()||passwordField.getText().toString().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please Fill All The Fields", Toast.LENGTH_SHORT).show();
+        } else {
+            tvLogin.setVisibility(View.INVISIBLE);
+            emailLogin = emailField.getText().toString().trim();
+            passwordLogin = passwordField.getText().toString().trim();
             signUp.setVisibility(View.INVISIBLE);
             passwordReset.setVisibility(View.INVISIBLE);
+            pbLogin.setVisibility(View.VISIBLE);
+            new checkUser().execute();
 
-            mAuth.signInWithEmailAndPassword(emailLogin,passwordLogin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        }
+    }
+
+    private class checkUser extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            mAuth.signInWithEmailAndPassword(emailLogin, passwordLogin).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        checkUser();
+                    if (task.isSuccessful()) {
+                      final String user_id=  mAuth.getCurrentUser().getUid();
+                        mDatabase.addValueEventListener(new ValueEventListener() {
+
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.hasChild(user_id)) {
+                                    Intent HomeActivity = new Intent(LoginActivity.this, HomeScreen.class);
+                                    HomeActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(HomeActivity);
+                                    finish();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Sign In Failed", Toast.LENGTH_SHORT).show();
+                                    signUp.setVisibility(View.VISIBLE);
+                                    passwordReset.setVisibility(View.VISIBLE);
+                                    pbLogin.setVisibility(View.INVISIBLE);
+                                    tvLogin.setVisibility(View.VISIBLE);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Toast.makeText(getApplicationContext(), "Sign In Failed", Toast.LENGTH_SHORT).show();
+                                signUp.setVisibility(View.VISIBLE);
+                                passwordReset.setVisibility(View.VISIBLE);
+                                pbLogin.setVisibility(View.INVISIBLE);
+                                tvLogin.setVisibility(View.VISIBLE);
+                            }
+
+
+                        });
+
+
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Sign In Failed,Try Again", Toast.LENGTH_SHORT).show();
-
                         signUp.setVisibility(View.VISIBLE);
                         passwordReset.setVisibility(View.VISIBLE);
-
+                        pbLogin.setVisibility(View.INVISIBLE);
+                        tvLogin.setVisibility(View.VISIBLE);
                     }
+
                 }
+
             });
+            return null;
         }
     }
-    public void checkUser(){
-       final String user_id=mAuth.getCurrentUser().getUid();
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(user_id)){
-                    Intent HomeActivity=new Intent(LoginActivity.this,HomeScreen.class);
-                    HomeActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(HomeActivity);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "User Does not Exist, Please Sign Up", Toast.LENGTH_SHORT).show();
 
-                    signUp.setVisibility(View.VISIBLE);
-                    passwordReset.setVisibility(View.VISIBLE);
+        public void goSignUp(View view) {
+            Intent signUpIntent = new Intent(LoginActivity.this, SignUp.class);
+            startActivity(signUpIntent);
+        }
 
-                }
-            }
+        public void goReset(View view) {
+            Intent resetIntent = new Intent(LoginActivity.this, ResetActivity.class);
+            startActivity(resetIntent);
+        }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-    public void goSignUp(View view){
-        Intent signUpIntent=new Intent(LoginActivity.this,SignUp.class);
-        startActivity(signUpIntent);
-    }
-    public void goReset(View view){
-        Intent resetIntent=new Intent(LoginActivity.this,ResetActivity.class);
-        startActivity(resetIntent);
     }
 
-}

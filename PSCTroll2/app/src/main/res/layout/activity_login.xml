@@ -136,6 +136,14 @@
         android:layout_alignStart="@+id/tvSignUp"
         android:layout_marginBottom="75dp" />
 
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pbLogin"
+        android:layout_alignBottom="@+id/tvLogin"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
 
