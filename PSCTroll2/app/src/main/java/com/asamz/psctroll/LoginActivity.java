@@ -1,8 +1,11 @@
 package com.asamz.psctroll;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView tvLogin;
     String emailLogin;
     String passwordLogin;
+    SharedPreferences  LoginCredentials ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +55,13 @@ public class LoginActivity extends AppCompatActivity {
         pbLogin.setVisibility(View.INVISIBLE);
         tvLogin = (ImageView) findViewById(R.id.tvLogin);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+        LoginCredentials=getSharedPreferences("loginStatus", Activity.MODE_PRIVATE);
+
 
     }
 
     public void LoginCheck(View view) {
+        if(isNetworkAvailable()){
 
         if (emailField.getText().toString().isEmpty()||passwordField.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please Fill All The Fields", Toast.LENGTH_SHORT).show();
@@ -66,7 +73,11 @@ public class LoginActivity extends AppCompatActivity {
             passwordReset.setVisibility(View.INVISIBLE);
             pbLogin.setVisibility(View.VISIBLE);
             new checkUser().execute();
+        }
 
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Internet is not connected", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -83,11 +94,17 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                       final String user_id=  mAuth.getCurrentUser().getUid();
+
                         mDatabase.addValueEventListener(new ValueEventListener() {
 
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.hasChild(user_id)) {
+                                    SharedPreferences.Editor editor=LoginCredentials.edit();
+                                    editor.putBoolean("loggedIn",true);
+                                    editor.putString("Email",emailLogin);
+                                    editor.putString("Password",passwordLogin);
+                                    editor.apply();
                                     Intent HomeActivity = new Intent(LoginActivity.this, HomeScreen.class);
                                     HomeActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(HomeActivity);
@@ -139,6 +156,12 @@ public class LoginActivity extends AppCompatActivity {
             Intent resetIntent = new Intent(LoginActivity.this, ResetActivity.class);
             startActivity(resetIntent);
         }
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
     }
 
