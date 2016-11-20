@@ -35,7 +35,7 @@
             android:name=".ResetActivity"
             android:label="Reset Password" />
         <activity android:name=".activity.AboutUsActivity" />
-        <activity android:name=".activity.DonateUsActivity"></activity>
+        <activity android:name=".activity.DonateUsActivity" />
     </application>
 
 </manifest>
