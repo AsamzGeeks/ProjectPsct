@@ -26,7 +26,7 @@
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
         <activity
             android:name=".LoginActivity"
-            android:label="Sign In"></activity>
+            android:label="Sign In" />
         <activity android:name=".HomeScreen" />
         <activity
             android:name=".SignUp"
@@ -34,6 +34,8 @@
         <activity
             android:name=".ResetActivity"
             android:label="Reset Password" />
+        <activity android:name=".activity.AboutUsActivity" />
+        <activity android:name=".activity.DonateUsActivity"></activity>
     </application>
 
 </manifest>
