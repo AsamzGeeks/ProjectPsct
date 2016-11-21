@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@mipmap/ic_home_white_24dp"/>
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@mipmap/ic_account_box_white_24dp"/>
+    <item
+        android:id="@+id/trollbox"
+        android:title="My Troll Box"
+        android:icon="@mipmap/ic_move_to_inbox_white_24dp"/>
+    <item
+        android:id="@+id/test"
+        android:title="Take Test"
+        android:icon="@mipmap/ic_library_books_white_24dp"/>
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@mipmap/ic_settings_white_24dp"/>
+    <item
+        android:id="@+id/donate"
+        android:title="Donate"
+        android:icon="@mipmap/ic_donate_white_24dp"/>
+    <item
+        android:id="@+id/about"
+        android:title="About Us"
+        android:icon="@mipmap/ic_developer_mode_white_24dp"/>
+</menu>

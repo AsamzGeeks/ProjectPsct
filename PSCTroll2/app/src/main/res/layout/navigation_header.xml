@@ -3,40 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/view_container"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
+    android:layout_height="160dp"
     android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
 
     <ImageView
         android:id="@+id/img_header_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         android:src="@drawable/raw_head"
-        android:adjustViewBounds="false" />
-
-    <ImageView
-        android:id="@+id/img_profile"
-        android:layout_width="match_parent"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/usericon"
-        android:layout_centerHorizontal="true"
-        android:layout_height="80dp"
-        android:layout_alignParentTop="true" />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:text="Unknown User"
-        android:fontFamily="sans-serif-thin"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:layout_below="@+id/img_profile"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+            android:id="@+id/img_profile"
+            android:layout_width="match_parent"
+            android:paddingTop="16dp"
+            app:srcCompat="@drawable/usericon"
+        android:layout_height="110dp" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:text="Unknown User"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-thin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="23dp" />
 
 </RelativeLayout>
