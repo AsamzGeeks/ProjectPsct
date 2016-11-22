@@ -28,4 +28,8 @@
         android:id="@+id/about"
         android:title="About Us"
         android:icon="@mipmap/ic_developer_mode_white_24dp"/>
+    <item
+        android:id="@+id/logout"
+        android:title="Log Out"
+  />
 </menu>

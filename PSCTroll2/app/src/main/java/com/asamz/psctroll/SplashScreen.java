@@ -50,13 +50,13 @@ public class SplashScreen extends AppCompatActivity {
                     Intent mainAct=new Intent(SplashScreen.this,HomeScreen.class);
                     mainAct.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(mainAct);
-                    finish();
+
                 }
                 else{
                     Intent signIn=new Intent(SplashScreen.this,LoginActivity.class);
                     signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(signIn);
-                    finish();
+
                 }
 
 
