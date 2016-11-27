@@ -24,6 +24,11 @@ public class HomeScreen extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private ActionBar actionBar;
     private SharedPreferences LoginCredentials;
+    String username;
+    SharedPreferences  mySharedPreferences ;
+    TextView userNameHead;
+    NavigationView nav_view;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,14 +38,24 @@ public class HomeScreen extends AppCompatActivity {
         mToggle = new ActionBarDrawerToggle(this, mDrawer, R.string.drawer_open, R.string.drawer_close);
         mDrawer.addDrawerListener(mToggle);
         mToggle.syncState();
+        nav_view = (NavigationView) findViewById(R.id.nav_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initNavigationDrawer();
         LoginCredentials=getSharedPreferences("loginStatus", Activity.MODE_PRIVATE);
+        mySharedPreferences=getSharedPreferences("loginStatus", Activity.MODE_PRIVATE);
+        username=mySharedPreferences.getString("Name","Unknown User");
+        View header=nav_view.getHeaderView(0);
+        userNameHead=(TextView)header.findViewById(R.id.tvName);
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        userNameHead.setText(username);
+    }
+
     public  void initNavigationDrawer() {
-        NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {

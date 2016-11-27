@@ -14,7 +14,7 @@
             android:text="Home Screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvTest"
+            android:id="@+id/tvNameDisplay"
             android:textAlignment="center"
             android:textSize="20sp" />
     </LinearLayout>

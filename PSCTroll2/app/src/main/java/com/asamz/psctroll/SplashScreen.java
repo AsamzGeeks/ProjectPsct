@@ -1,5 +1,7 @@
 package com.asamz.psctroll;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +20,6 @@ import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import pl.droidsonroids.gif.GifTextView;
 public class SplashScreen extends AppCompatActivity {
     private ActionBar actionBar;
     private ImageView ivPscIcon;
@@ -30,12 +31,14 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       final AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(SplashScreen.this, R.animator.logo_animation);
         setContentView(R.layout.activity_splash_screen);
         actionBar = getSupportActionBar();
         sAuth = FirebaseAuth.getInstance();
         //Hiding the action bar, since it is a splash screen activity
         actionBar.hide();
         ivPscIcon = (ImageView) findViewById(R.id.ivPscIcon);
+        set.setTarget(ivPscIcon);
         pbLoadBar=(ProgressBar)findViewById(R.id.pbSplashLoad);
         LoginCredentials=getSharedPreferences("loginStatus", Activity.MODE_PRIVATE);
         final boolean status=LoginCredentials.getBoolean("loggedIn",false);
@@ -47,6 +50,7 @@ public class SplashScreen extends AppCompatActivity {
                 Intent i = new Intent(SplashScreen.this, SplashScreen.class);
                 startActivity(i);
                 if(status){
+                    set.start();
                     Intent mainAct=new Intent(SplashScreen.this,HomeScreen.class);
                     mainAct.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(mainAct);

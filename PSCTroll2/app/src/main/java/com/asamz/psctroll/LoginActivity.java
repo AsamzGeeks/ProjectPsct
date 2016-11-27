@@ -24,12 +24,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pkmmte.view.CircularImageView;
+
+import java.util.jar.Attributes;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailField, passwordField;
@@ -41,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
     String emailLogin;
     String passwordLogin;
     SharedPreferences  LoginCredentials ;
+    String displayName;
+    DatabaseReference getRef ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         tvLogin = (ImageView) findViewById(R.id.tvLogin);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
         LoginCredentials=getSharedPreferences("loginStatus", Activity.MODE_PRIVATE);
+
+
 
 
     }
@@ -94,16 +102,34 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                       final String user_id=  mAuth.getCurrentUser().getUid();
+                        DatabaseReference mmDatabase = FirebaseDatabase.getInstance().getReference("users");
+                        mmDatabase.child(user_id).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                               displayName=dataSnapshot.child("displayName").getValue(true).toString();
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
 
                         mDatabase.addValueEventListener(new ValueEventListener() {
 
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.hasChild(user_id)) {
+
+
                                     SharedPreferences.Editor editor=LoginCredentials.edit();
+
+
                                     editor.putBoolean("loggedIn",true);
                                     editor.putString("Email",emailLogin);
                                     editor.putString("Password",passwordLogin);
+                                    editor.putString("Name",displayName);
                                     editor.apply();
                                     Intent HomeActivity = new Intent(LoginActivity.this, HomeScreen.class);
                                     HomeActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

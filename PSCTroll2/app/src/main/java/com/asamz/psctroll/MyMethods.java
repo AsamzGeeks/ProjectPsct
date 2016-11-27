@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.design.widget.NavigationView;
 import android.util.Base64;
 import android.util.Log;
 
@@ -96,5 +97,8 @@ public class MyMethods {
         byte[] decodedByte = Base64.decode(input, 0);
         return BitmapFactory
                 .decodeByteArray(decodedByte, 0, decodedByte.length);
+    }
+    public void addnameHeader(){
+
     }
 }

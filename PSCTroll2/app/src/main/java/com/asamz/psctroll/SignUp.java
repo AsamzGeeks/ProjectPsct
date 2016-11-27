@@ -39,6 +39,7 @@ public class SignUp extends AppCompatActivity {
     private ImageView ivSignUpButton;
     private boolean regStatus=false;
     private ProgressDialog mProgress;
+    String fullName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class SignUp extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference("users");
         mProgress=new ProgressDialog(this);
+
 
     }
 
@@ -149,8 +151,7 @@ public class SignUp extends AppCompatActivity {
 
                         String user_id = mAuth.getCurrentUser().getUid();
                         DatabaseReference current_user_db = mDatabase.child(user_id);
-                        current_user_db.child("name").setValue(FirstName);
-                        current_user_db.child("secondname").setValue(SecondName);
+                        current_user_db.child("displayName").setValue(FirstName+" "+SecondName);
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         user.sendEmailVerification();
                                             mProgress.dismiss();
