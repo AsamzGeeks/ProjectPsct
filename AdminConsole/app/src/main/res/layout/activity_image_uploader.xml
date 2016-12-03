@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_image_uploader"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.asamzgeeks.psc.adminconsole.ImageUploader">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="71dp"
+        android:id="@+id/etImagerUrl"
+        android:hint="Image URL"
+        android:layout_toLeftOf="@+id/btnSelect"
+        android:layout_toStartOf="@+id/btnSelect" />
+
+    <Button
+        android:text="SELECT IMAGE"
+        android:layout_width="wrap_content"
+        android:onClick="ImageSelector"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSelect"
+        android:layout_alignTop="@+id/etImagerUrl"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:layout_marginTop="54dp"
+        android:id="@+id/etDetails"
+        android:layout_height="150dp"
+        android:hint="Type Image Metadata Here"
+        android:layout_below="@+id/btnSelect"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="91dp"
+        android:onClick="uploadImage"
+        android:id="@+id/btnSubmit"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
